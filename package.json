@@ -48,14 +48,8 @@
     "type": "git",
     "url": "https://github.com/zamaraevk/phq-9"
   },
-  "keywords": [
-    "react",
-    "workshop",
-    "intro",
-    "redux"
-  ],
   "bugs": {
     "url": ""
   },
-  "homepage": ""
+  "homepage": "http://konstantin.nyc"
 }
