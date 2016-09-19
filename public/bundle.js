@@ -19847,16 +19847,35 @@
 
 	'use strict';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var React = __webpack_require__(1);
 	var data = __webpack_require__(161);
 	var Question = __webpack_require__(162);
 
 	var Main = React.createClass({
 	  displayName: 'Main',
-	  componentDidMount: function componentDidMount() {
-	    console.log(data);
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      step: 7
+	    };
+	  },
+	  nextStep: function nextStep() {
+	    if (this.state.step === data.questions.length - 1) {
+	      return;
+	    } else {
+	      this.setState({
+	        step: this.state.step + 1
+	      });
+	    }
+	  },
+	  previousStep: function previousStep() {
+	    if (this.state.step === 0) {
+	      return;
+	    } else {
+	      this.setState({
+	        step: this.state.step - 1
+	      });
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -19874,9 +19893,21 @@
 	      React.createElement(
 	        'div',
 	        { className: 'questions' },
-	        data.questions.map(function (question) {
-	          return React.createElement(Question, _extends({}, question, { key: question.id }));
-	        })
+	        React.createElement(Question, { question: data.questions[this.state.step] })
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'nav' },
+	        React.createElement(
+	          'button',
+	          { className: 'back', onClick: this.previousStep },
+	          'Back'
+	        ),
+	        React.createElement(
+	          'button',
+	          { className: 'next', onClick: this.nextStep },
+	          'Next'
+	        )
 	      )
 	    );
 	  }
@@ -19890,42 +19921,15 @@
 
 	module.exports = {
 		"questions": [
-			{
-				"id": "0",
-				"question": "Little interest or pleasure in doing things?"
-			},
-			{
-				"id": "1",
-				"question": "Feeling down, depressed, or hopeless?"
-			},
-			{
-				"id": "2",
-				"question": "Trouble falling or staying asleep, or sleeping too much?"
-			},
-			{
-				"id": "3",
-				"question": "Feeling tired or having little energy?"
-			},
-			{
-				"id": "4",
-				"question": "Poor appetite or overeating?"
-			},
-			{
-				"id": "5",
-				"question": "Feeling bad about yourself - or that you are a failure or have let yourself or your family down?"
-			},
-			{
-				"id": "6",
-				"question": "Trouble concentrating on things, such as reading the newspaper or watching television?"
-			},
-			{
-				"id": "7",
-				"question": "Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?"
-			},
-			{
-				"id": "8",
-				"question": "Thoughts that you would be better off dead, or of hurting yourself in some way?"
-			}
+			"Little interest or pleasure in doing things?",
+			"Feeling down, depressed, or hopeless?",
+			"Trouble falling or staying asleep, or sleeping too much?",
+			"Feeling tired or having little energy?",
+			"Poor appetite or overeating?",
+			"Feeling bad about yourself - or that you are a failure or have let yourself or your family down?",
+			"Trouble concentrating on things, such as reading the newspaper or watching television?",
+			"Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?",
+			"Thoughts that you would be better off dead, or of hurting yourself in some way?"
 		]
 	};
 
