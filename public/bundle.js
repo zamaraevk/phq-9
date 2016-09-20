@@ -95,7 +95,7 @@
 	  },
 	  resultLogic: function resultLogic(result) {
 	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
-	    if (result < 4) this.showResult('none: ' + result);else if (result < 9) this.showResult('mid: ' + result);else this.showResult('you need help buddy: ' + result);
+	    if (result < 4) this.showResult(result);else if (result <= 9) this.showResult(result);else this.showResult(result);
 	  },
 	  showResult: function showResult(result) {
 	    this.setState({
@@ -20036,19 +20036,49 @@
 /* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
-	var string = React.PropTypes.string;
+	var Contact = __webpack_require__(164);
+	var number = React.PropTypes.number;
 
 
 	var Result = React.createClass({
-	  displayName: "Result",
+	  displayName: 'Result',
 
 
 	  propTypes: {
-	    quizResult: string.isRequired
+	    quizResult: number.isRequired
 	  },
+	  renderContact: function renderContact() {
+	    return React.createElement(Contact, null);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'question-box' },
+	      React.createElement(
+	        'p',
+	        { className: 'question' },
+	        this.props.quizResult
+	      ),
+	      this.props.quizResult >= 10 ? this.renderContact() : null
+	    );
+	  }
+	});
+
+	module.exports = Result;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Contact = React.createClass({
+	  displayName: "Contact",
 	  render: function render() {
 	    return React.createElement(
 	      "div",
@@ -20056,13 +20086,13 @@
 	      React.createElement(
 	        "p",
 	        { className: "question" },
-	        this.props.quizResult
+	        "Please contact therapists for help"
 	      )
 	    );
 	  }
 	});
 
-	module.exports = Result;
+	module.exports = Contact;
 
 /***/ }
 /******/ ]);

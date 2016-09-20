@@ -45,9 +45,9 @@ const App = React.createClass({
   },
   resultLogic (result) {
     // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
-    if (result < 4) this.showResult('none: ' + result)
-    else if (result < 9) this.showResult('mid: ' + result)
-    else this.showResult('you need help buddy: ' + result)
+    if (result < 4) this.showResult(result)
+    else if (result <= 9) this.showResult(result)
+    else this.showResult(result)
   },
   showResult (result) {
     this.setState({
@@ -68,7 +68,7 @@ const App = React.createClass({
   renderResult () {
     return (
       <Result quizResult={this.state.result} />
-    )
+        )
   },
   render () {
     return (
