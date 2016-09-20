@@ -1,13 +1,11 @@
 const React = require('react')
 
 const AnswerOptions = (props) => (
-  <div
-    className="wrapper"
-    key={props.key}
-   >
+  <div className="wrapper">
     <button
       className="btn"
-      onClick={props.nextStep}
+      value={props.value}
+      onClick={props.nextStep.bind(null, props.value)}
     >{props.answer}</button>
   </div>
 )
@@ -15,7 +13,7 @@ const AnswerOptions = (props) => (
 const { number, string, func } = React.PropTypes
 
 AnswerOptions.propTypes = {
-  key: number.isRequired,
+  value: number.isRequired,
   answer: string.isRequired,
   nextStep: func.isRequired
 }

@@ -19857,16 +19857,17 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      step: 0
+	      step: 0,
+	      count: 0
 	    };
 	  },
-	  nextStep: function nextStep(answer) {
-	    console.log('My answer is:', answer);
+	  nextStep: function nextStep(num) {
 	    if (this.state.step === data.questions.length - 1) {
 	      return;
 	    } else {
 	      this.setState({
-	        step: this.state.step + 1
+	        step: this.state.step + 1,
+	        count: this.state.count + num
 	      });
 	    }
 	  },
@@ -19882,7 +19883,8 @@
 	        React.createElement(
 	          'h1',
 	          { className: 'brand' },
-	          'PHQ-9'
+	          'PHQ-9 Count: ',
+	          this.state.count
 	        )
 	      ),
 	      React.createElement(
@@ -19890,7 +19892,7 @@
 	        { className: 'questions' },
 	        React.createElement(Question, { question: data.questions[this.state.step] }),
 	        data.answers.map(function (object) {
-	          return React.createElement(AnswerOptions, { answer: object.answer, key: object.id, nextStep: _this.nextStep });
+	          return React.createElement(AnswerOptions, { answer: object.answer, key: object.id, value: object.id, nextStep: _this.nextStep });
 	        })
 	      )
 	    );
@@ -19978,15 +19980,13 @@
 	var AnswerOptions = function AnswerOptions(props) {
 	  return React.createElement(
 	    "div",
-	    {
-	      className: "wrapper",
-	      key: props.key
-	    },
+	    { className: "wrapper" },
 	    React.createElement(
 	      "button",
 	      {
 	        className: "btn",
-	        onClick: props.nextStep
+	        value: props.value,
+	        onClick: props.nextStep.bind(null, props.value)
 	      },
 	      props.answer
 	    )
@@ -20000,7 +20000,7 @@
 
 
 	AnswerOptions.propTypes = {
-	  key: number.isRequired,
+	  value: number.isRequired,
 	  answer: string.isRequired,
 	  nextStep: func.isRequired
 	};
