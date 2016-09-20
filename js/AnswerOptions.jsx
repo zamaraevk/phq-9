@@ -5,7 +5,7 @@ const AnswerOptions = (props) => (
     <button
       className="btn"
       value={props.value}
-      onClick={props.nextStep.bind(null, props.value)}
+      onClick={props.onAnswerSubmit}
     >{props.answer}</button>
   </div>
 )
@@ -13,9 +13,9 @@ const AnswerOptions = (props) => (
 const { number, string, func } = React.PropTypes
 
 AnswerOptions.propTypes = {
+  onAnswerSubmit: func.isRequired,
   value: number.isRequired,
-  answer: string.isRequired,
-  nextStep: func.isRequired
+  answer: string.isRequired
 }
 
 module.exports = AnswerOptions

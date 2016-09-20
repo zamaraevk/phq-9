@@ -12,16 +12,16 @@
     ],
     "answers": [
         {
-            "id": 0,
+            "value": 0,
             "answer": "Not at all"
         }, {
-            "id": 1,
+            "value": 1,
             "answer": "Several days"
         }, {
-            "id": 2,
+            "value": 2,
             "answer": "More than half the days in the week"
         }, {
-            "id": 3,
+            "value": 3,
             "answer": "Nearly every day"
         }]
     }
