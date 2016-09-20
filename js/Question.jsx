@@ -1,15 +1,18 @@
 const React = require('react')
-
-const Question = (props) => (
-  <div className="question-box">
-    <p className="question">{props.question}</p>
-  </div>
-)
-
 const { string } = React.PropTypes
 
-Question.propTypes = {
-  question: string.isRequired
-}
+const Question = React.createClass({
+
+  propTypes: {
+    question: string.isRequired
+  },
+  render () {
+    return (
+      <div className="question-box">
+        <p className="question">{this.props.question}</p>
+      </div>
+      )
+  }
+})
 
 module.exports = Question

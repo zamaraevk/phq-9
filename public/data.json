@@ -9,5 +9,19 @@
         "Trouble concentrating on things, such as reading the newspaper or watching television?",
         "Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?",
         "Thoughts that you would be better off dead, or of hurting yourself in some way?"
-        ]
+    ],
+    "answers": [
+        {
+            "id": 0,
+            "answer": "Not at all"
+        }, {
+            "id": 1,
+            "answer": "Several days"
+        }, {
+            "id": 2,
+            "answer": "More than half the days in the week"
+        }, {
+            "id": 3,
+            "answer": "Nearly every day"
+        }]
     }
