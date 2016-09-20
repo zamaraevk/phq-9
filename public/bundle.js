@@ -79,7 +79,11 @@
 	    this.setState({
 	      answersCount: answersCount
 	    });
-	    this.setNextQuestion();
+	    if (this.state.questionId < this.state.questions.length - 1) {
+	      this.setNextQuestion();
+	    } else {
+	      this.resultLogic(answersCount);
+	    }
 	  },
 	  setNextQuestion: function setNextQuestion() {
 	    var questionId = this.state.questionId + 1;
@@ -87,6 +91,15 @@
 	    this.setState({
 	      questionId: questionId,
 	      currentQuestion: this.state.questions[questionId]
+	    });
+	  },
+	  resultLogic: function resultLogic(result) {
+	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
+	    if (result < 4) this.showResult('none: ' + result);else if (result < 9) this.showResult('mid: ' + result);else this.showResult('you need help buddy: ' + result);
+	  },
+	  showResult: function showResult(result) {
+	    this.setState({
+	      result: result
 	    });
 	  },
 	  renderQuiz: function renderQuiz() {
