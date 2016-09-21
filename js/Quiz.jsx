@@ -9,19 +9,13 @@ const Quiz = React.createClass({
     question: string.isRequired,
     answers: array.isRequired
   },
-  getInitialState: function () {
-    return {
-      step: 0,
-      count: 0
-    }
-  },
   render () {
     return (
       <div className='container'>
         <div className='questions'>
           <Question question={this.props.question} />
-          {this.props.answers.map((object) => {
-            return <AnswerOptions answer={object.answer} key={object.value} value={object.value} onAnswerSubmit={this.props.onAnswerSubmit} />
+          {this.props.answers.map((options) => {
+            return <AnswerOptions answer={options.answer} key={options.value} value={options.value} onAnswerSubmit={this.props.onAnswerSubmit} />
           })
           }
         </div>

@@ -57,9 +57,7 @@ const App = React.createClass({
   renderQuiz () {
     return (
       <Quiz
-        questionId={this.state.questionId}
         question={this.state.currentQuestion}
-        questionTotal={this.state.questions.length}
         answers={this.state.answers}
         onAnswerSubmit={this.onAnswerSubmit}
      />

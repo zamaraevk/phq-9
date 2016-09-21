@@ -9,21 +9,10 @@ const Contact = React.createClass({
     therapist: string.isRequired,
     setTherapist: func.isRequired
   },
-  getInitialState: function () {
-    return {
-      active: false
-    }
-  },
-  click () {
-    this.setState({
-      active: true
-    })
-  },
   render () {
     const liStyle = {
       background: '#eee'
     }
-    console.log(this.props.isSelected)
     if (this.props.isSelected) {
       liStyle['background'] = '#ff7f7f'
     }

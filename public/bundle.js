@@ -104,9 +104,7 @@
 	  },
 	  renderQuiz: function renderQuiz() {
 	    return React.createElement(Quiz, {
-	      questionId: this.state.questionId,
 	      question: this.state.currentQuestion,
-	      questionTotal: this.state.questions.length,
 	      answers: this.state.answers,
 	      onAnswerSubmit: this.onAnswerSubmit
 	    });
@@ -19941,12 +19939,6 @@
 	    question: string.isRequired,
 	    answers: array.isRequired
 	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      step: 0,
-	      count: 0
-	    };
-	  },
 	  render: function render() {
 	    var _this = this;
 
@@ -19957,8 +19949,8 @@
 	        'div',
 	        { className: 'questions' },
 	        React.createElement(Question, { question: this.props.question }),
-	        this.props.answers.map(function (object) {
-	          return React.createElement(AnswerOptions, { answer: object.answer, key: object.value, value: object.value, onAnswerSubmit: _this.props.onAnswerSubmit });
+	        this.props.answers.map(function (options) {
+	          return React.createElement(AnswerOptions, { answer: options.answer, key: options.value, value: options.value, onAnswerSubmit: _this.props.onAnswerSubmit });
 	        })
 	      )
 	    );
@@ -19974,28 +19966,25 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
+
+	var Question = function Question(props) {
+	  return React.createElement(
+	    "div",
+	    { className: "question-box" },
+	    React.createElement(
+	      "p",
+	      { className: "question" },
+	      props.question
+	    )
+	  );
+	};
+
 	var string = React.PropTypes.string;
 
 
-	var Question = React.createClass({
-	  displayName: "Question",
-
-
-	  propTypes: {
-	    question: string.isRequired
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      "div",
-	      { className: "question-box" },
-	      React.createElement(
-	        "p",
-	        { className: "question" },
-	        this.props.question
-	      )
-	    );
-	  }
-	});
+	Question.propTypes = {
+	  question: string.isRequired
+	};
 
 	module.exports = Question;
 
@@ -20098,21 +20087,10 @@
 	    therapist: string.isRequired,
 	    setTherapist: func.isRequired
 	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      active: false
-	    };
-	  },
-	  click: function click() {
-	    this.setState({
-	      active: true
-	    });
-	  },
 	  render: function render() {
 	    var liStyle = {
 	      background: '#eee'
 	    };
-	    console.log(this.props.isSelected);
 	    if (this.props.isSelected) {
 	      liStyle['background'] = '#ff7f7f';
 	    }
