@@ -115,7 +115,7 @@
 	        React.createElement(
 	          'h2',
 	          null,
-	          'PHQ-9   Total: ',
+	          'PHQ-9 Total: ',
 	          this.state.answersCount,
 	          '/27'
 	        )
@@ -20159,13 +20159,21 @@
 	  },
 	  getInitialState: function getInitialState() {
 	    return {
-	      therapist: null
+	      therapist: null,
+	      message: ''
 	    };
+	  },
+	  handleChange: function handleChange(e) {
+	    this.setState({ message: e.target.value });
 	  },
 	  setTherapist: function setTherapist(e) {
 	    this.setState({
 	      therapist: e.currentTarget.id
 	    });
+	  },
+
+	  checkFieldsBeforeSubmit: function checkFieldsBeforeSubmit() {
+	    if (this.state.therapist && this.state.message) this.props.formSubmit();
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -20177,10 +20185,17 @@
 	        var isSelected = _this.state.therapist == i;
 	        return React.createElement(Contact, { therapist: therapist, isSelected: isSelected, therapistId: i, key: i, setTherapist: _this.setTherapist });
 	      }),
-	      React.createElement('textarea', { className: 'message-box', name: 'description', placeholder: 'Please leave the message to a therapist' }),
+	      React.createElement('textarea', {
+	        className: 'message-box',
+	        name: 'description',
+	        value: this.state.message,
+	        onChange: this.handleChange,
+	        placeholder: 'Please leave the message to a therapist' }),
 	      React.createElement(
 	        'button',
-	        { className: 'btn', onClick: this.props.formSubmit },
+	        {
+	          className: 'btn',
+	          onClick: this.checkFieldsBeforeSubmit },
 	        'Submit'
 	      )
 	    );
@@ -20208,13 +20223,6 @@
 	    ),
 	    React.createElement("img", { className: "happy", src: "public/thankyou.jpg" })
 	  );
-	};
-
-	var func = React.PropTypes.func;
-
-
-	ThankYou.propTypes = {
-	  question: func.isRequired
 	};
 
 	module.exports = ThankYou;

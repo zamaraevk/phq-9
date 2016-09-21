@@ -9,13 +9,20 @@ const ContactForm = React.createClass({
   },
   getInitialState: function () {
     return {
-      therapist: null
+      therapist: null,
+      message: ''
     }
+  },
+  handleChange: function (e) {
+    this.setState({message: e.target.value})
   },
   setTherapist (e) {
     this.setState({
       therapist: e.currentTarget.id
     })
+  },
+  checkFieldsBeforeSubmit: function () {
+    if (this.state.therapist && this.state.message) this.props.formSubmit()
   },
   render () {
     return (
@@ -24,8 +31,15 @@ const ContactForm = React.createClass({
           const isSelected = this.state.therapist == i
           return <Contact therapist={therapist} isSelected={isSelected} therapistId={i} key={i} setTherapist={this.setTherapist} />
         })}
-        <textarea className="message-box" name="description" placeholder="Please leave the message to a therapist" />
-        <button className="btn" onClick={this.props.formSubmit}>Submit</button>
+        <textarea
+          className="message-box"
+          name="description"
+          value={this.state.message}
+          onChange={this.handleChange}
+          placeholder="Please leave the message to a therapist" />
+        <button
+          className="btn"
+          onClick={this.checkFieldsBeforeSubmit}>Submit</button>
       </div>
       )
   }

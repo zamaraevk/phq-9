@@ -7,10 +7,4 @@ const ThankYou = (props) => (
   </div>
 )
 
-const { func } = React.PropTypes
-
-ThankYou.propTypes = {
-  question: func.isRequired
-}
-
 module.exports = ThankYou

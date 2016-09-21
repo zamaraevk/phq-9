@@ -63,7 +63,7 @@ const App = React.createClass({
     return (
       <div className="wrapper-app">
         <div className="app-header">
-          <h2>PHQ-9   Total: {this.state.answersCount}/27</h2>
+          <h2>PHQ-9 Total: {this.state.answersCount}/27</h2>
         </div>
         {this.state.result !== null ? this.renderResult() : this.renderQuiz()}
       </div>
