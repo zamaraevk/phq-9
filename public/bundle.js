@@ -72,6 +72,8 @@
 	      answers: data.answers
 	    });
 	  },
+
+	  // on Answer Submit count answer value and load next question or set result
 	  onAnswerSubmit: function onAnswerSubmit(e) {
 	    var target = Number(e.currentTarget.value);
 	    var answersCount = target + this.state.answersCount;
@@ -95,6 +97,9 @@
 	      currentQuestion: this.state.questions[questionId]
 	    });
 	  },
+
+	  // if result has been updated in state --> function renderResult
+	  // else --> function renderQuiz
 	  renderQuiz: function renderQuiz() {
 	    return React.createElement(Quiz, {
 	      question: this.state.currentQuestion,
@@ -102,9 +107,13 @@
 	      onAnswerSubmit: this.onAnswerSubmit
 	    });
 	  },
+
+	  // function to render Result component
 	  renderResult: function renderResult() {
 	    return React.createElement(Result, { quizResult: this.state.result });
 	  },
+
+	  // in Total(this.state.answerCount) show current sum of answer values
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -19928,11 +19937,13 @@
 	var Quiz = React.createClass({
 	  displayName: 'Quiz',
 
+	  // Prop validation
 	  propTypes: {
 	    onAnswerSubmit: func.isRequired,
 	    question: string.isRequired,
 	    answers: array.isRequired
 	  },
+	  // Render question and list of all answers options
 	  render: function render() {
 	    var _this = this;
 
@@ -19947,7 +19958,11 @@
 	          'ul',
 	          { className: 'answers' },
 	          this.props.answers.map(function (options) {
-	            return React.createElement(AnswerOptions, { answer: options.answer, key: options.value, value: options.value, onAnswerSubmit: _this.props.onAnswerSubmit });
+	            return React.createElement(AnswerOptions, {
+	              answer: options.answer,
+	              key: options.value,
+	              value: options.value,
+	              onAnswerSubmit: _this.props.onAnswerSubmit });
 	          })
 	        )
 	      )
@@ -19964,7 +19979,7 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
-
+	// Stateless component. Render current question
 	var Question = function Question(props) {
 	  return React.createElement(
 	    "div",
@@ -19978,7 +19993,7 @@
 	};
 
 	var string = React.PropTypes.string;
-
+	// Prop validation
 
 	Question.propTypes = {
 	  question: string.isRequired
@@ -19993,7 +20008,7 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
-
+	// Stateless component. Render list of answers
 	var AnswerOptions = function AnswerOptions(props) {
 	  return React.createElement(
 	    "li",
@@ -20010,7 +20025,7 @@
 	var number = _React$PropTypes.number;
 	var string = _React$PropTypes.string;
 	var func = _React$PropTypes.func;
-
+	// Prop validation
 
 	AnswerOptions.propTypes = {
 	  onAnswerSubmit: func.isRequired,
@@ -20035,7 +20050,7 @@
 	var Result = React.createClass({
 	  displayName: 'Result',
 
-
+	  // Prop validation
 	  propTypes: {
 	    quizResult: number.isRequired
 	  },
@@ -20048,27 +20063,37 @@
 	  componentWillMount: function componentWillMount() {
 	    this.resultLogic(this.props.quizResult);
 	  },
+
+	  // on form Submit --> reset condition message and set submit: true to trigger renderThankYou function(to render ThankYou component)
 	  formSubmit: function formSubmit() {
 	    this.setState({
 	      condition: '',
 	      submit: true
 	    });
 	  },
+
+	  // based on result - check Depression Severity and update condition message in state
 	  resultLogic: function resultLogic(result) {
 	    var condition = '';
 	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
 	    if (result <= 4) condition = 'Congratulations you are not stressed at all!';else if (result <= 9) condition = 'Hey, you have slight stress condition, try some chocolate';else condition = 'We suggest you to contact with our best specialists!';
 	    this.setState({ condition: condition });
 	  },
+
+	  // render Contact component
 	  renderContact: function renderContact() {
 	    return React.createElement(ContactForm, { formSubmit: this.formSubmit });
 	  },
 	  renderImage: function renderImage() {
 	    return React.createElement('img', { className: 'happy', src: 'public/cat.png' });
 	  },
+
+	  // render ThankYou component
 	  renderThankYou: function renderThankYou() {
 	    return React.createElement(ThankYou, null);
 	  },
+
+	  // logic based on result number and this.state.submit
 	  render: function render() {
 	    var show;
 	    if (this.state.submit) {
@@ -20110,13 +20135,14 @@
 	var Contact = React.createClass({
 	  displayName: 'Contact',
 
-
+	  // Prop validation
 	  propTypes: {
 	    isSelected: bool.isRequired,
 	    therapistId: number.isRequired,
 	    therapist: string.isRequired,
 	    setTherapist: func.isRequired
 	  },
+	  // if therapist has been set in state of ContactForm --> update its css value
 	  render: function render() {
 	    var liStyle = {
 	      background: '#fff'
@@ -20130,7 +20156,11 @@
 	      { className: 'contact-box' },
 	      React.createElement(
 	        'p',
-	        { id: this.props.therapistId, className: 'contact', style: liStyle, onClick: this.props.setTherapist },
+	        {
+	          id: this.props.therapistId,
+	          className: 'contact',
+	          style: liStyle,
+	          onClick: this.props.setTherapist },
 	        this.props.therapist
 	      )
 	    );
@@ -20154,6 +20184,7 @@
 	var ContactForm = React.createClass({
 	  displayName: 'ContactForm',
 
+	  // Prop validation
 	  propTypes: {
 	    formSubmit: func.isRequired
 	  },
@@ -20163,18 +20194,23 @@
 	      message: ''
 	    };
 	  },
+	  // update textarea message in state
 	  handleChange: function handleChange(e) {
 	    this.setState({ message: e.target.value });
 	  },
+	  // update current therapist id in state
 	  setTherapist: function setTherapist(e) {
 	    this.setState({
 	      therapist: e.currentTarget.id
 	    });
 	  },
 
+	  // form Submit validation. To submit form user should pick one of the therapists + type message
 	  checkFieldsBeforeSubmit: function checkFieldsBeforeSubmit() {
 	    if (this.state.therapist && this.state.message) this.props.formSubmit();
 	  },
+	  // render all available therapists, textarea and submit button
+	  // isSelected checking if therapist has been set in state --> update it css value for the background
 	  render: function render() {
 	    var _this = this;
 
@@ -20211,7 +20247,7 @@
 	"use strict";
 
 	var React = __webpack_require__(1);
-
+	// Stateless component. Render Thank You message
 	var ThankYou = function ThankYou(props) {
 	  return React.createElement(
 	    "div",

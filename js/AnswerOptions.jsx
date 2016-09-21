@@ -1,5 +1,5 @@
 const React = require('react')
-
+// Stateless component. Render list of answers
 const AnswerOptions = (props) => (
   <li
     className="btn"
@@ -9,7 +9,7 @@ const AnswerOptions = (props) => (
 )
 
 const { number, string, func } = React.PropTypes
-
+// Prop validation
 AnswerOptions.propTypes = {
   onAnswerSubmit: func.isRequired,
   value: number.isRequired,

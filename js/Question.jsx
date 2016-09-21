@@ -1,5 +1,5 @@
 const React = require('react')
-
+// Stateless component. Render current question
 const Question = (props) => (
   <div className="question-box">
     <p className="question">{props.question}</p>
@@ -7,7 +7,7 @@ const Question = (props) => (
 )
 
 const { string } = React.PropTypes
-
+// Prop validation
 Question.propTypes = {
   question: string.isRequired
 }

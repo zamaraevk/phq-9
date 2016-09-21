@@ -22,6 +22,7 @@ const App = React.createClass({
       answers: data.answers
     })
   },
+  // on Answer Submit count answer value and load next question or set result
   onAnswerSubmit (e) {
     const target = Number(e.currentTarget.value)
     const answersCount = target + this.state.answersCount
@@ -45,6 +46,8 @@ const App = React.createClass({
       currentQuestion: this.state.questions[questionId]
     })
   },
+  // if result has been updated in state --> function renderResult
+  // else --> function renderQuiz
   renderQuiz () {
     return (
       <Quiz
@@ -54,11 +57,13 @@ const App = React.createClass({
      />
    )
   },
+  // function to render Result component
   renderResult () {
     return (
       <Result quizResult={this.state.result} />
         )
   },
+  // in Total(this.state.answerCount) show current sum of answer values
   render () {
     return (
       <div className="wrapper-app">

@@ -4,11 +4,13 @@ const AnswerOptions = require('./AnswerOptions')
 const { string, func, array } = React.PropTypes
 
 const Quiz = React.createClass({
+   // Prop validation
   propTypes: {
     onAnswerSubmit: func.isRequired,
     question: string.isRequired,
     answers: array.isRequired
   },
+  // Render question and list of all answers options
   render () {
     return (
       <div className='container'>
@@ -16,7 +18,11 @@ const Quiz = React.createClass({
           <Question question={this.props.question} />
           <ul className='answers'>
               {this.props.answers.map((options) => {
-                return <AnswerOptions answer={options.answer} key={options.value} value={options.value} onAnswerSubmit={this.props.onAnswerSubmit} />
+                return <AnswerOptions
+                  answer={options.answer}
+                  key={options.value}
+                  value={options.value}
+                  onAnswerSubmit={this.props.onAnswerSubmit} />
               })
              }
           </ul>

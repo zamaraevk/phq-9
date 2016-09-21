@@ -4,7 +4,7 @@ const ThankYou = require('./ThankYou')
 const { number } = React.PropTypes
 
 const Result = React.createClass({
-
+  // Prop validation
   propTypes: {
     quizResult: number.isRequired
   },
@@ -17,12 +17,14 @@ const Result = React.createClass({
   componentWillMount () {
     this.resultLogic(this.props.quizResult)
   },
+  // on form Submit --> reset condition message and set submit: true to trigger renderThankYou function(to render ThankYou component)
   formSubmit () {
     this.setState({
       condition: '',
       submit: true
     })
   },
+  // based on result - check Depression Severity and update condition message in state
   resultLogic (result) {
     var condition = ''
     // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
@@ -31,6 +33,7 @@ const Result = React.createClass({
     else condition = 'We suggest you to contact with our best specialists!'
     this.setState({condition: condition})
   },
+  // render Contact component
   renderContact () {
     return (
       <ContactForm formSubmit={this.formSubmit} />
@@ -41,11 +44,13 @@ const Result = React.createClass({
       <img className="happy" src="public/cat.png" />
    )
   },
+  // render ThankYou component
   renderThankYou () {
     return (
       <ThankYou />
    )
   },
+  // logic based on result number and this.state.submit
   render () {
     var show
     if (this.state.submit) {
