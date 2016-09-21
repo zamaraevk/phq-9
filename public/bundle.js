@@ -62,7 +62,7 @@
 	      currentQuestion: '',
 	      answers: [],
 	      answersCount: 0,
-	      result: 0
+	      result: null
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -115,10 +115,12 @@
 	        React.createElement(
 	          'h2',
 	          null,
-	          'Patient Health Questionnaire'
+	          'PHQ-9   Total: ',
+	          this.state.answersCount,
+	          '/27'
 	        )
 	      ),
-	      this.state.result ? this.renderResult() : this.renderQuiz()
+	      this.state.result !== null ? this.renderResult() : this.renderQuiz()
 	    );
 	  }
 	});
