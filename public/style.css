@@ -6,7 +6,7 @@
     margin-top: 20px;
     padding: 0px;
     max-width: 600px;
-    height: 450px;
+    height: 470px;
     background-color: #fff;
     border: 1px solid #eee;
     color:#666;
@@ -56,4 +56,13 @@
 }
 .contact:hover {
     cursor: pointer;
+}
+.btn {
+    margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+.wrapper-app {
+    height: 500px;
+}
 }

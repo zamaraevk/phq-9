@@ -25,7 +25,7 @@ const ContactForm = React.createClass({
           return <Contact therapist={therapist} isSelected={isSelected} therapistId={i} key={i} setTherapist={this.setTherapist} />
         })}
         <textarea className="message-box" name="description" placeholder="Please leave the message to a therapist" />
-        <button onClick={this.props.formSubmit}>Submit</button>
+        <button className="btn" onClick={this.props.formSubmit}>Submit</button>
       </div>
       )
   }

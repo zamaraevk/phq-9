@@ -20178,7 +20178,7 @@
 	      React.createElement('textarea', { className: 'message-box', name: 'description', placeholder: 'Please leave the message to a therapist' }),
 	      React.createElement(
 	        'button',
-	        { onClick: this.props.formSubmit },
+	        { className: 'btn', onClick: this.props.formSubmit },
 	        'Submit'
 	      )
 	    );
@@ -20203,7 +20203,8 @@
 	      "p",
 	      { className: "question" },
 	      "Thank You!"
-	    )
+	    ),
+	    React.createElement("img", { className: "happy", src: "public/thankyou.jpg" })
 	  );
 	};
 
