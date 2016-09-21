@@ -23,5 +23,10 @@
         }, {
             "value": 3,
             "answer": "Nearly every day"
-        }]
+        }],
+    "therapists": [
+        "Elizabeth Blackwell",
+        "Edward Jenner",
+        "William Harvey"
+        ]
     }

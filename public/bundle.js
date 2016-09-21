@@ -19910,6 +19910,11 @@
 				"value": 3,
 				"answer": "Nearly every day"
 			}
+		],
+		"therapists": [
+			"Elizabeth Blackwell",
+			"Edward Jenner",
+			"William Harvey"
 		]
 	};
 
@@ -20039,7 +20044,7 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Contact = __webpack_require__(164);
+	var ContactForm = __webpack_require__(165);
 	var number = React.PropTypes.number;
 
 
@@ -20051,7 +20056,7 @@
 	    quizResult: number.isRequired
 	  },
 	  renderContact: function renderContact() {
-	    return React.createElement(Contact, null);
+	    return React.createElement(ContactForm, null);
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -20073,26 +20078,107 @@
 /* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
+	var _React$PropTypes = React.PropTypes;
+	var string = _React$PropTypes.string;
+	var func = _React$PropTypes.func;
+	var number = _React$PropTypes.number;
+	var bool = _React$PropTypes.bool;
+
 
 	var Contact = React.createClass({
-	  displayName: "Contact",
+	  displayName: 'Contact',
+
+
+	  propTypes: {
+	    isSelected: bool.isRequired,
+	    therapistId: number.isRequired,
+	    therapist: string.isRequired,
+	    setTherapist: func.isRequired
+	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      active: false
+	    };
+	  },
+	  click: function click() {
+	    this.setState({
+	      active: true
+	    });
+	  },
 	  render: function render() {
+	    var liStyle = {
+	      background: '#eee'
+	    };
+	    console.log(this.props.isSelected);
+	    if (this.props.isSelected) {
+	      liStyle['background'] = '#ff7f7f';
+	    }
 	    return React.createElement(
-	      "div",
-	      { className: "question-box" },
+	      'div',
+	      { className: 'contact-box' },
 	      React.createElement(
-	        "p",
-	        { className: "question" },
-	        "Please contact therapists for help"
+	        'p',
+	        { id: this.props.therapistId, className: 'contact', style: liStyle, onClick: this.props.setTherapist },
+	        this.props.therapist
 	      )
 	    );
 	  }
 	});
 
 	module.exports = Contact;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var data = __webpack_require__(159);
+	var Contact = __webpack_require__(164);
+
+	var ContactForm = React.createClass({
+	  displayName: 'ContactForm',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      therapist: null
+	    };
+	  },
+	  setTherapist: function setTherapist(e) {
+	    this.setState({
+	      therapist: e.currentTarget.id
+	    });
+	  },
+	  render: function render() {
+	    var _this = this;
+
+	    return React.createElement(
+	      'div',
+	      { className: 'question-box' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        this.state.therapist
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'question' },
+	        'Please contact therapists for help'
+	      ),
+	      data.therapists.map(function (therapist, i) {
+	        var isSelected = _this.state.therapist == i;
+	        return React.createElement(Contact, { therapist: therapist, isSelected: isSelected, therapistId: i, key: i, setTherapist: _this.setTherapist });
+	      }),
+	      React.createElement('textarea', { name: 'description', placeholder: 'Please leave the message to a therapist' })
+	    );
+	  }
+	});
+
+	module.exports = ContactForm;
 
 /***/ }
 /******/ ]);

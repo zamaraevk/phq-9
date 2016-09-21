@@ -1,5 +1,5 @@
 const React = require('react')
-const Contact = require('./Contact')
+const ContactForm = require('./ContactForm')
 const { number } = React.PropTypes
 
 const Result = React.createClass({
@@ -9,7 +9,7 @@ const Result = React.createClass({
   },
   renderContact () {
     return (
-      <Contact />
+      <ContactForm />
    )
   },
   render () {
