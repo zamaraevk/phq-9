@@ -15,14 +15,12 @@ const ContactForm = React.createClass({
   },
   render () {
     return (
-      <div className="question-box">
-        <h1>{this.state.therapist}</h1>
-        <p className="question">Please contact therapists for help</p>
+      <div className="contact-box">
         {data.therapists.map((therapist, i) => {
           const isSelected = this.state.therapist == i
           return <Contact therapist={therapist} isSelected={isSelected} therapistId={i} key={i} setTherapist={this.setTherapist} />
         })}
-        <textarea name="description" placeholder="Please leave the message to a therapist" />
+        <textarea className="message-box" name="description" placeholder="Please leave the message to a therapist" />
       </div>
       )
   }

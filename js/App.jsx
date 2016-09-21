@@ -32,7 +32,9 @@ const App = React.createClass({
     if (this.state.questionId < this.state.questions.length - 1) {
       this.setNextQuestion()
     } else {
-      this.resultLogic(answersCount)
+      this.setState({
+        result: answersCount
+      })
     }
   },
   setNextQuestion () {
@@ -41,17 +43,6 @@ const App = React.createClass({
     this.setState({
       questionId: questionId,
       currentQuestion: this.state.questions[questionId]
-    })
-  },
-  resultLogic (result) {
-    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
-    if (result < 4) this.showResult(result)
-    else if (result <= 9) this.showResult(result)
-    else this.showResult(result)
-  },
-  showResult (result) {
-    this.setState({
-      result: result
     })
   },
   renderQuiz () {
@@ -70,9 +61,9 @@ const App = React.createClass({
   },
   render () {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>PHQ-9 {this.state.answersCount}</h2>
+      <div className="wrapper-app">
+        <div className="app-header">
+          <h2>Patient Health Questionnaire</h2>
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
       </div>

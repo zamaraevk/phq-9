@@ -1,0 +1,59 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:100';
+
+.wrapper-app {
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 0px;
+    max-width: 600px;
+    height: 450px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    color:#666;
+}
+.app-header {
+    text-align: center;
+    color: #2696b6;
+    border-bottom: 1px solid #eee;
+}
+.question-box {
+    padding: 0px 20px;
+    height: 115px;
+    vertical-align: middle;
+    font-size: 20px;
+}
+.answers {
+    list-style: none;
+    padding: 0px 20px;
+}
+.answers li {
+    margin: 10px 0px;
+    padding: 10px;
+    max-width: 600px;
+    background-color: #eee;
+    font-size: 20px;
+}
+.answers li:hover {
+    background-color: #2696b6;
+    color:#fff;
+    cursor: pointer;
+}
+.happy {
+    margin:30px;
+}
+.message-box {
+    width: 98%;
+    padding: 5px;
+    height: 100px;
+    border:1px solid #eee;
+}
+.contact {
+    margin: 10px 0px;
+    padding: 10px;
+    max-width: 600px;
+    background-color: #eee;
+    font-size: 20px;
+}
+.contact:hover {
+    cursor: pointer;
+}

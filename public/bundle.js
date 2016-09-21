@@ -82,7 +82,9 @@
 	    if (this.state.questionId < this.state.questions.length - 1) {
 	      this.setNextQuestion();
 	    } else {
-	      this.resultLogic(answersCount);
+	      this.setState({
+	        result: answersCount
+	      });
 	    }
 	  },
 	  setNextQuestion: function setNextQuestion() {
@@ -91,15 +93,6 @@
 	    this.setState({
 	      questionId: questionId,
 	      currentQuestion: this.state.questions[questionId]
-	    });
-	  },
-	  resultLogic: function resultLogic(result) {
-	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
-	    if (result < 4) this.showResult(result);else if (result <= 9) this.showResult(result);else this.showResult(result);
-	  },
-	  showResult: function showResult(result) {
-	    this.setState({
-	      result: result
 	    });
 	  },
 	  renderQuiz: function renderQuiz() {
@@ -115,15 +108,14 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'App' },
+	      { className: 'wrapper-app' },
 	      React.createElement(
 	        'div',
-	        { className: 'App-header' },
+	        { className: 'app-header' },
 	        React.createElement(
 	          'h2',
 	          null,
-	          'PHQ-9 ',
-	          this.state.answersCount
+	          'Patient Health Questionnaire'
 	        )
 	      ),
 	      this.state.result ? this.renderResult() : this.renderQuiz()
@@ -19949,9 +19941,13 @@
 	        'div',
 	        { className: 'questions' },
 	        React.createElement(Question, { question: this.props.question }),
-	        this.props.answers.map(function (options) {
-	          return React.createElement(AnswerOptions, { answer: options.answer, key: options.value, value: options.value, onAnswerSubmit: _this.props.onAnswerSubmit });
-	        })
+	        React.createElement(
+	          'ul',
+	          { className: 'answers' },
+	          this.props.answers.map(function (options) {
+	            return React.createElement(AnswerOptions, { answer: options.answer, key: options.value, value: options.value, onAnswerSubmit: _this.props.onAnswerSubmit });
+	          })
+	        )
 	      )
 	    );
 	  }
@@ -19998,17 +19994,13 @@
 
 	var AnswerOptions = function AnswerOptions(props) {
 	  return React.createElement(
-	    "div",
-	    { className: "wrapper" },
-	    React.createElement(
-	      "button",
-	      {
-	        className: "btn",
-	        value: props.value,
-	        onClick: props.onAnswerSubmit
-	      },
-	      props.answer
-	    )
+	    "li",
+	    {
+	      className: "btn",
+	      value: props.value,
+	      onClick: props.onAnswerSubmit
+	    },
+	    props.answer
 	  );
 	};
 
@@ -20044,8 +20036,26 @@
 	  propTypes: {
 	    quizResult: number.isRequired
 	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      condition: '',
+	      submit: false
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    this.resultLogic(this.props.quizResult);
+	  },
+	  resultLogic: function resultLogic(result) {
+	    var condition = '';
+	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
+	    if (result <= 4) condition = 'Congratulations you are not stressed at all!';else if (result <= 9) condition = 'Hey, you have slight stress condition, try some chocolate';else condition = 'We suggest you to contact with our best specialists!';
+	    this.setState({ condition: condition });
+	  },
 	  renderContact: function renderContact() {
 	    return React.createElement(ContactForm, null);
+	  },
+	  renderImage: function renderImage() {
+	    return React.createElement('img', { className: 'happy', src: 'public/cat.png' });
 	  },
 	  render: function render() {
 	    return React.createElement(
@@ -20053,10 +20063,10 @@
 	      { className: 'question-box' },
 	      React.createElement(
 	        'p',
-	        { className: 'question' },
-	        this.props.quizResult
+	        { className: 'result' },
+	        this.state.condition
 	      ),
-	      this.props.quizResult >= 10 ? this.renderContact() : null
+	      this.props.quizResult >= 10 ? this.renderContact() : this.renderImage()
 	    );
 	  }
 	});
@@ -20089,10 +20099,11 @@
 	  },
 	  render: function render() {
 	    var liStyle = {
-	      background: '#eee'
+	      background: '#fff'
 	    };
 	    if (this.props.isSelected) {
-	      liStyle['background'] = '#ff7f7f';
+	      liStyle['background'] = '#2696b6';
+	      liStyle['color'] = '#fff';
 	    }
 	    return React.createElement(
 	      'div',
@@ -20136,22 +20147,12 @@
 
 	    return React.createElement(
 	      'div',
-	      { className: 'question-box' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        this.state.therapist
-	      ),
-	      React.createElement(
-	        'p',
-	        { className: 'question' },
-	        'Please contact therapists for help'
-	      ),
+	      { className: 'contact-box' },
 	      data.therapists.map(function (therapist, i) {
 	        var isSelected = _this.state.therapist == i;
 	        return React.createElement(Contact, { therapist: therapist, isSelected: isSelected, therapistId: i, key: i, setTherapist: _this.setTherapist });
 	      }),
-	      React.createElement('textarea', { name: 'description', placeholder: 'Please leave the message to a therapist' })
+	      React.createElement('textarea', { className: 'message-box', name: 'description', placeholder: 'Please leave the message to a therapist' })
 	    );
 	  }
 	});

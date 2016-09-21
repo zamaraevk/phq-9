@@ -11,10 +11,11 @@ const Contact = React.createClass({
   },
   render () {
     const liStyle = {
-      background: '#eee'
+      background: '#fff'
     }
     if (this.props.isSelected) {
-      liStyle['background'] = '#ff7f7f'
+      liStyle['background'] = '#2696b6'
+      liStyle['color'] = '#fff'
     }
     return (
       <div className="contact-box">
