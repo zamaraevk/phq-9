@@ -20026,6 +20026,7 @@
 
 	var React = __webpack_require__(1);
 	var ContactForm = __webpack_require__(165);
+	var ThankYou = __webpack_require__(166);
 	var number = React.PropTypes.number;
 
 
@@ -20045,6 +20046,12 @@
 	  componentWillMount: function componentWillMount() {
 	    this.resultLogic(this.props.quizResult);
 	  },
+	  formSubmit: function formSubmit() {
+	    this.setState({
+	      condition: '',
+	      submit: true
+	    });
+	  },
 	  resultLogic: function resultLogic(result) {
 	    var condition = '';
 	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
@@ -20052,12 +20059,23 @@
 	    this.setState({ condition: condition });
 	  },
 	  renderContact: function renderContact() {
-	    return React.createElement(ContactForm, null);
+	    return React.createElement(ContactForm, { formSubmit: this.formSubmit });
 	  },
 	  renderImage: function renderImage() {
 	    return React.createElement('img', { className: 'happy', src: 'public/cat.png' });
 	  },
+	  renderThankYou: function renderThankYou() {
+	    return React.createElement(ThankYou, null);
+	  },
 	  render: function render() {
+	    var show;
+	    if (this.state.submit) {
+	      show = this.renderThankYou();
+	    } else if (this.props.quizResult >= 10) {
+	      show = this.renderContact();
+	    } else {
+	      show = this.renderImage();
+	    }
 	    return React.createElement(
 	      'div',
 	      { className: 'question-box' },
@@ -20066,7 +20084,7 @@
 	        { className: 'result' },
 	        this.state.condition
 	      ),
-	      this.props.quizResult >= 10 ? this.renderContact() : this.renderImage()
+	      show
 	    );
 	  }
 	});
@@ -20128,10 +20146,15 @@
 	var React = __webpack_require__(1);
 	var data = __webpack_require__(159);
 	var Contact = __webpack_require__(164);
+	var func = React.PropTypes.func;
+
 
 	var ContactForm = React.createClass({
 	  displayName: 'ContactForm',
 
+	  propTypes: {
+	    formSubmit: func.isRequired
+	  },
 	  getInitialState: function getInitialState() {
 	    return {
 	      therapist: null
@@ -20152,12 +20175,46 @@
 	        var isSelected = _this.state.therapist == i;
 	        return React.createElement(Contact, { therapist: therapist, isSelected: isSelected, therapistId: i, key: i, setTherapist: _this.setTherapist });
 	      }),
-	      React.createElement('textarea', { className: 'message-box', name: 'description', placeholder: 'Please leave the message to a therapist' })
+	      React.createElement('textarea', { className: 'message-box', name: 'description', placeholder: 'Please leave the message to a therapist' }),
+	      React.createElement(
+	        'button',
+	        { onClick: this.props.formSubmit },
+	        'Submit'
+	      )
 	    );
 	  }
 	});
 
 	module.exports = ContactForm;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var ThankYou = function ThankYou(props) {
+	  return React.createElement(
+	    "div",
+	    { className: "question-box" },
+	    React.createElement(
+	      "p",
+	      { className: "question" },
+	      "Thank You!"
+	    )
+	  );
+	};
+
+	var func = React.PropTypes.func;
+
+
+	ThankYou.propTypes = {
+	  question: func.isRequired
+	};
+
+	module.exports = ThankYou;
 
 /***/ }
 /******/ ]);
