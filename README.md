@@ -11,7 +11,9 @@ Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe
 
 ```
 
-# Built with React ![](/public/react.png)
+# Built with React
+
+![](/public/react.png)
 
 ## Get Started
 Install dependencies in your project directory with:
