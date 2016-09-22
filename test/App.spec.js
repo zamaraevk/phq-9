@@ -33,6 +33,20 @@ describe('<Quiz />', () => {
   })
 })
 
+describe('<Contact />', () => {
+  // prop validation for ContactForm component on server side
+  const props = {
+    isSelected: true,
+    therapistId: 1,
+    therapist: 'string',
+    setTherapist: function () {}
+  }
+  it('Contact component should exist', () => {
+    const wrapper = shallow(<Contact {...props} />)
+    expect(!!wrapper).to.be.true
+  })
+})
+
 describe('<ContactForm />', () => {
   // prop validation for ContactForm component on server side
   const props = {
@@ -42,7 +56,7 @@ describe('<ContactForm />', () => {
     const wrapper = shallow(<ContactForm {...props} />)
     expect(wrapper.find('textarea')).to.have.length(1)
   })
-  it('should have a button', function () {
+  it('it should have a button', function () {
     const wrapper = shallow(<ContactForm {...props} />)
     expect(wrapper.find('button')).to.have.length(1)
   })
