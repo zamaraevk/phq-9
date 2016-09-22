@@ -20047,7 +20047,7 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var ContactForm = __webpack_require__(165);
+	var ContactForm = __webpack_require__(164);
 	var ThankYou = __webpack_require__(166);
 	var number = React.PropTypes.number;
 
@@ -20130,59 +20130,8 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var _React$PropTypes = React.PropTypes;
-	var string = _React$PropTypes.string;
-	var func = _React$PropTypes.func;
-	var number = _React$PropTypes.number;
-	var bool = _React$PropTypes.bool;
-
-
-	var Contact = React.createClass({
-	  displayName: 'Contact',
-
-	  // Prop validation
-	  propTypes: {
-	    isSelected: bool.isRequired,
-	    therapistId: number.isRequired,
-	    therapist: string.isRequired,
-	    setTherapist: func.isRequired
-	  },
-	  // if therapist has been set in state of ContactForm --> update its css value
-	  render: function render() {
-	    var liStyle = {
-	      background: '#fff'
-	    };
-	    if (this.props.isSelected) {
-	      liStyle['background'] = '#2696b6';
-	      liStyle['color'] = '#fff';
-	    }
-	    return React.createElement(
-	      'div',
-	      { className: 'contact-box' },
-	      React.createElement(
-	        'p',
-	        {
-	          id: this.props.therapistId,
-	          className: 'contact',
-	          style: liStyle,
-	          onClick: this.props.setTherapist },
-	        this.props.therapist
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Contact;
-
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
 	var data = __webpack_require__(159);
-	var Contact = __webpack_require__(164);
+	var Contact = __webpack_require__(165);
 	var func = React.PropTypes.func;
 
 
@@ -20244,6 +20193,57 @@
 	});
 
 	module.exports = ContactForm;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var _React$PropTypes = React.PropTypes;
+	var string = _React$PropTypes.string;
+	var func = _React$PropTypes.func;
+	var number = _React$PropTypes.number;
+	var bool = _React$PropTypes.bool;
+
+
+	var Contact = React.createClass({
+	  displayName: 'Contact',
+
+	  // Prop validation
+	  propTypes: {
+	    isSelected: bool.isRequired,
+	    therapistId: number.isRequired,
+	    therapist: string.isRequired,
+	    setTherapist: func.isRequired
+	  },
+	  // if therapist has been set in state of ContactForm --> update its css value
+	  render: function render() {
+	    var liStyle = {
+	      background: '#fff'
+	    };
+	    if (this.props.isSelected) {
+	      liStyle['background'] = '#2696b6';
+	      liStyle['color'] = '#fff';
+	    }
+	    return React.createElement(
+	      'div',
+	      { className: 'contact-box' },
+	      React.createElement(
+	        'p',
+	        {
+	          id: this.props.therapistId,
+	          className: 'contact',
+	          style: liStyle,
+	          onClick: this.props.setTherapist },
+	        this.props.therapist
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Contact;
 
 /***/ },
 /* 166 */
