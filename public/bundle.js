@@ -20257,7 +20257,7 @@
 	      { className: "question" },
 	      "Thank You!"
 	    ),
-	    React.createElement("img", { className: "happy", src: "public/thankyou.jpg" })
+	    React.createElement("img", { className: "happy", src: "public/thankyou.png" })
 	  );
 	};
 

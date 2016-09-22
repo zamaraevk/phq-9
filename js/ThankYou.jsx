@@ -3,7 +3,7 @@ const React = require('react')
 const ThankYou = (props) => (
   <div className="question-box">
     <p className="question">Thank You!</p>
-    <img className="happy" src="public/thankyou.jpg" />
+    <img className="happy" src="public/thankyou.png" />
   </div>
 )
 
