@@ -18,8 +18,7 @@ const App = React.createClass({
   componentWillMount () {
     this.setState({
       questions: data.questions,
-      currentQuestion: data.questions[0],
-      answers: data.answers
+      currentQuestion: data.questions[0]
     })
   },
   // on Answer Submit count answer value and load next question or set result
@@ -52,7 +51,6 @@ const App = React.createClass({
     return (
       <Quiz
         question={this.state.currentQuestion}
-        answers={this.state.answers}
         onAnswerSubmit={this.onAnswerSubmit}
      />
    )

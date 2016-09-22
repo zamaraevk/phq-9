@@ -68,8 +68,7 @@
 	  componentWillMount: function componentWillMount() {
 	    this.setState({
 	      questions: data.questions,
-	      currentQuestion: data.questions[0],
-	      answers: data.answers
+	      currentQuestion: data.questions[0]
 	    });
 	  },
 
@@ -103,7 +102,6 @@
 	  renderQuiz: function renderQuiz() {
 	    return React.createElement(Quiz, {
 	      question: this.state.currentQuestion,
-	      answers: this.state.answers,
 	      onAnswerSubmit: this.onAnswerSubmit
 	    });
 	  },
@@ -19928,10 +19926,13 @@
 	var React = __webpack_require__(1);
 	var Question = __webpack_require__(161);
 	var AnswerOptions = __webpack_require__(162);
+
+	var _require = __webpack_require__(159);
+
+	var answers = _require.answers;
 	var _React$PropTypes = React.PropTypes;
 	var string = _React$PropTypes.string;
 	var func = _React$PropTypes.func;
-	var array = _React$PropTypes.array;
 
 
 	var Quiz = React.createClass({
@@ -19940,8 +19941,7 @@
 	  // Prop validation
 	  propTypes: {
 	    onAnswerSubmit: func.isRequired,
-	    question: string.isRequired,
-	    answers: array.isRequired
+	    question: string.isRequired
 	  },
 	  // Render question and list of all answers options
 	  render: function render() {
@@ -19957,7 +19957,7 @@
 	        React.createElement(
 	          'ul',
 	          { className: 'answers' },
-	          this.props.answers.map(function (options) {
+	          answers.map(function (options) {
 	            return React.createElement(AnswerOptions, {
 	              answer: options.answer,
 	              key: options.value,
