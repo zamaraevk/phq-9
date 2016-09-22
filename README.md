@@ -1,4 +1,6 @@
-# Patient Health Questionnaire (PHQ-9) ![](/public/thankyou.png)
+# Patient Health Questionnaire (PHQ-9)
+
+![](/public/thankyou.png)
 
 This easy to use patient questionnaire is a self-administered version of the PRIME-MD diagnostic instrument for common mental disorders. The PHQ-9 is the depression module, which scores each of the nine DSM-IV criteria as "0" (not at all) to "3" (nearly every day). It has been validated for use in primary care.
 
