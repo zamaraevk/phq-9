@@ -20,3 +20,8 @@ Install dependencies in your project directory with:
 Test with Mocha, Chai and Enzyme. To run all tests in project directory:
 
 `npm run test`
+
+## Report
+To view test coverage report:
+
+`npm run cover`
