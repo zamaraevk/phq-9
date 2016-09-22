@@ -20076,7 +20076,7 @@
 	  resultLogic: function resultLogic(result) {
 	    var condition = '';
 	    // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
-	    if (result <= 4) condition = 'Congratulations you are not stressed at all!';else if (result <= 9) condition = 'Hey, you have a slight stress condition, try some chocolate?';else condition = 'We suggest you to contact our best specialists!';
+	    if (result <= 4) condition = 'Congratulations you are not stressed at all!';else if (result <= 9) condition = 'Hey, you have a mild depression, try some chocolate?';else if (result <= 14) condition = 'Hm, looks like you have moderate depression. We suggest you to contact our best specialists!';else if (result <= 19) condition = 'Hm, looks like you have moderately severe depression. We suggest you to contact our best specialists!';else condition = 'Hm, looks like you have severe depression. We suggest you to contact our best specialists!';
 	    this.setState({ condition: condition });
 	  },
 
@@ -20257,7 +20257,7 @@
 	      { className: "question" },
 	      "Thank You! No stress! We will contact you shortly!"
 	    ),
-	    React.createElement("img", { className: "happy", src: "public/thankyou.png" })
+	    React.createElement("img", { className: "calm", src: "public/thankyou.png" })
 	  );
 	};
 
