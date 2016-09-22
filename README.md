@@ -19,8 +19,6 @@ Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe
 
 I am using Standard JS. Click link to see the rules: [standardjs.com](http://standardjs.com/)
 
-![](/public/react.png)
-
 ## Get Started
 Install dependencies in your project directory with:
 
