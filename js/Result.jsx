@@ -29,8 +29,8 @@ const Result = React.createClass({
     var condition = ''
     // Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe.
     if (result <= 4) condition = 'Congratulations you are not stressed at all!'
-    else if (result <= 9) condition = 'Hey, you have slight stress condition, try some chocolate'
-    else condition = 'We suggest you to contact with our best specialists!'
+    else if (result <= 9) condition = 'Hey, you have a slight stress condition, try some chocolate?'
+    else condition = 'We suggest you to contact our best specialists!'
     this.setState({condition: condition})
   },
   // render Contact component
