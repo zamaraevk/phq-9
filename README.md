@@ -16,7 +16,9 @@ Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe
 ## Get Started
 Install dependencies in your project directory with:
 
-`npm install`
+1. `npm install`
+
+2. Open `index.html` in your Chrome browser
 
 ## Testing
 Test with Mocha, Chai and Enzyme. To run all tests in project directory:

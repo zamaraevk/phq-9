@@ -125,6 +125,11 @@
 	          'PHQ-9 Total: ',
 	          this.state.answersCount,
 	          '/27'
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'subtitle' },
+	          'Over the last two weeks, how often have you been bothered by any of the following problems?'
 	        )
 	      ),
 	      this.state.result !== null ? this.renderResult() : this.renderQuiz()

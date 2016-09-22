@@ -30,7 +30,7 @@ a {
     margin-top: 75px;
     padding: 0px;
     max-width: 600px;
-    height: 500px;
+    height: 530px;
     background-color: #fff;
     border: 1px solid #eee;
     color:#666;
@@ -39,6 +39,9 @@ a {
     text-align: center;
     color: #2696b6;
     border-bottom: 1px solid #eee;
+}
+.subtitle {
+    font-size: 14px;
 }
 .question-box {
     padding: 0px 20px;
@@ -92,6 +95,6 @@ a {
 
 @media (max-width: 500px) {
 .wrapper-app {
-    height: 525px;
+    height: 570px;
 }
 }
