@@ -1,5 +1,4 @@
 const React = require('react')
-const ReactDOM = require('react-dom')
 const data = require('../public/data')
 const Quiz = require('./Quiz')
 const Result = require('./Result')
@@ -74,5 +73,3 @@ const App = React.createClass({
     )
   }
 })
-
-ReactDOM.render(<App />, document.getElementById('app'))

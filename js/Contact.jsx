@@ -1,4 +1,6 @@
 const React = require('react')
+import { setTherapist } from './actions/index'
+
 const { string, func, number, bool } = React.PropTypes
 
 const Contact = React.createClass({
