@@ -42,8 +42,8 @@ ContactForm.propTypes = {
 function mapStateToProps (state) {
   return {
     therapists: state.therapists,
-    therapist: state.results.therapist,
-    message: state.results.message
+    therapist: state.quiz.therapist,
+    message: state.quiz.message
   }
 }
 function mapDispatchToProps (dispatch) {

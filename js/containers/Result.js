@@ -65,7 +65,7 @@ Result.propTypes = {
 function mapStateToProps (state) {
   console.log(state)
   return {
-    submit: state.results.submit
+    submit: state.quiz.submit
   }
 }
 
