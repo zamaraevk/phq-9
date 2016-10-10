@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 
 import Quiz from './Quiz'
 import Result from './Result'
+import Header from '../components/Header'
 
 class App extends Component {
 
+ // function to render Quiz component
   renderQuiz () {
     return (
       <Quiz />
@@ -17,20 +19,17 @@ class App extends Component {
       <Result quizResult={this.props.answersCount} />
         )
   }
-  // in Total(this.state.answerCount) show current sum of answer values
+  // if no more questions -> render Result
   render () {
     return (
       <div className="wrapper-app">
-        <div className="app-header">
-          <h2>PHQ-9 Total: {this.props.answersCount}/27</h2>
-          <p className="subtitle">Over the last two weeks, how often have you been bothered by any of the following problems?</p>
-        </div>
+        <Header answersCount={this.props.answersCount} />
         {this.props.currentQuestion > this.props.questions.length - 1 ? this.renderResult() : this.renderQuiz()}
       </div>
     )
   }
 }
-
+// Prop validation
 const { number, array } = React.PropTypes
 
 App.propTypes = {
@@ -38,13 +37,13 @@ App.propTypes = {
   currentQuestion: number.isRequired,
   questions: array.isRequired
 }
-
+// Access to global state properties. Use as a props.
 function mapStateToProps (state) {
   return {
     questions: state.questions,
-    currentQuestion: state.currentQuestion.questionId,
-    answersCount: state.currentQuestion.answersCount
+    currentQuestion: state.quiz.questionId,
+    answersCount: state.quiz.answersCount
   }
 }
-
+// Connect your componet to global state object
 export default connect(mapStateToProps)(App)

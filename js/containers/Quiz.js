@@ -7,7 +7,7 @@ import Question from '../components/Question'
 import AnswerOption from '../components/AnswerOption'
 
 class Quiz extends Component {
-
+  // map array of answers
   createAnswerOptions () {
     return this.props.answers.map((options) => {
       return (
@@ -24,8 +24,8 @@ class Quiz extends Component {
     return (
       <div className='container'>
         <div className='questions'>
+          <Question question={this.props.questions[currentQuestion]} />
           <ul className='answers'>
-            <Question question={this.props.questions[currentQuestion]} />
             {this.createAnswerOptions()}
           </ul>
         </div>
@@ -33,28 +33,26 @@ class Quiz extends Component {
     )
   }
 }
-
+// Prop validation
 const { number, array, func } = React.PropTypes
 
 Quiz.propTypes = {
-  answersCount: number.isRequired,
   onAnswerSubmit: func.isRequired,
   currentQuestion: number,
   answers: array.isRequired,
   questions: array.isRequired
 }
-
+// Access to global state properties. Use as a props.
 function mapStateToProps (state) {
   return {
     answers: state.answers,
     questions: state.questions,
-    currentQuestion: state.currentQuestion.questionId,
-    answersCount: state.currentQuestion.answersCount
-
+    currentQuestion: state.quiz.questionId
   }
 }
+// use Action Creators as props
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({onAnswerSubmit: onAnswerSubmit}, dispatch)
 }
-
+// Connect your componet to global state object
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz)

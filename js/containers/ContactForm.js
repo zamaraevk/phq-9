@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Contact from './Contact'
+import Contact from '../components/Contact'
 
 import { setMessage, setTherapist, submitForm } from '../actions/index'
 
@@ -11,7 +11,7 @@ class ContactForm extends Component {
     return (
       <div className="contact-box">
          {this.props.therapists.map((therapist, i) => {
-           const isSelected = this.props.therapist == i
+           const isSelected = this.props.therapist === i
            return <Contact therapist={therapist} isSelected={isSelected} therapistId={i} key={i} setTherapist={this.props.setTherapist} />
          })}
         <textarea
@@ -27,7 +27,7 @@ class ContactForm extends Component {
      )
   }
 }
-
+// Prop validation
 const { string, number, func, array } = React.PropTypes
 
 ContactForm.propTypes = {
@@ -38,7 +38,7 @@ ContactForm.propTypes = {
   therapist: number,
   message: string.isRequired
 }
-
+// Access to global state properties. Use as a props.
 function mapStateToProps (state) {
   return {
     therapists: state.therapists,
@@ -46,6 +46,7 @@ function mapStateToProps (state) {
     message: state.quiz.message
   }
 }
+// use Action Creators as props
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
     setMessage: setMessage,
@@ -53,34 +54,5 @@ function mapDispatchToProps (dispatch) {
     submitForm: submitForm
   }, dispatch)
 }
-
+// Connect your componet to global state object
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)
-
-// const ContactForm = React.createClass({
-
-//   // form Submit validation. To submit form user should pick one of the therapists + type message
-//   checkFieldsBeforeSubmit: function () {
-//     if (this.state.therapist && this.state.message) this.props.formSubmit()
-//   },
-//   // render all available therapists, textarea and submit button
-//     // isSelected checking if therapist has been set in state --> update it css value for the background
-//   render () {
-//     return (
-//       <div className="contact-box">
-//         {data.therapists.map((therapist, i) => {
-//           const isSelected = this.state.therapist == i
-//           return <Contact therapist={therapist} isSelected={isSelected} therapistId={i} key={i} setTherapist={this.setTherapist} />
-//         })}
-//         <textarea
-//           className="message-box"
-//           name="description"
-//           value={this.state.message}
-//           onChange={this.handleChange}
-//           placeholder="Please leave the message to a therapist" />
-//         <button
-//           className="btn"
-//           onClick={this.checkFieldsBeforeSubmit}>Submit</button>
-//       </div>
-//       )
-//   }
-// })

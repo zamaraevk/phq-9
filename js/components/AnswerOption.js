@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Stateless component. Render list of answers
+// Stateless component. Answer Option
 const AnswerOption = (props) => (
   <li
     className="btn"
@@ -8,9 +8,9 @@ const AnswerOption = (props) => (
     onClick={props.onAnswerSubmit}
     >{props.answer}</li>
 )
-
-const { number, string, func } = React.PropTypes
 // Prop validation
+const { number, string, func } = React.PropTypes
+
 AnswerOption.propTypes = {
   onAnswerSubmit: func.isRequired,
   value: number.isRequired,
