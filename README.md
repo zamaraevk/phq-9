@@ -11,7 +11,7 @@ Depression Severity: 0-4 none, 5-9 mild, 10-14 moderate, 15-19 moderately severe
 
 ```
 
-# Built with React
+# Built with React + Redux
 
 ![](/public/react.png)
 
@@ -30,6 +30,8 @@ Install dependencies in your project directory with:
 Test with Mocha, Chai and Enzyme. To run all tests in project directory:
 
 `npm run test`
+
+Currently Tests working for React version(react branch)
 
 ## Report
 To view test coverage report:
