@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 // Stateless component. Render Thank You message
 const ThankYou = (props) => (
   <div className="question-box">
@@ -7,4 +7,4 @@ const ThankYou = (props) => (
   </div>
 )
 
-module.exports = ThankYou
+export default ThankYou

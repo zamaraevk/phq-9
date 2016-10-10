@@ -1,19 +1,20 @@
-const React = require('react')
-// Stateless component. Render list of answers
-const AnswerOptions = (props) => (
+import React from 'react'
+
+// Stateless component. Answer Option
+const AnswerOption = (props) => (
   <li
     className="btn"
     value={props.value}
     onClick={props.onAnswerSubmit}
     >{props.answer}</li>
 )
-
-const { number, string, func } = React.PropTypes
 // Prop validation
-AnswerOptions.propTypes = {
+const { number, string, func } = React.PropTypes
+
+AnswerOption.propTypes = {
   onAnswerSubmit: func.isRequired,
   value: number.isRequired,
   answer: string.isRequired
 }
 
-module.exports = AnswerOptions
+export default AnswerOption

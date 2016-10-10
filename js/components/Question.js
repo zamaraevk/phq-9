@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 // Stateless component. Render current question
 const Question = (props) => (
   <div className="question-box">
@@ -12,4 +12,4 @@ Question.propTypes = {
   question: string.isRequired
 }
 
-module.exports = Question
+export default Question
